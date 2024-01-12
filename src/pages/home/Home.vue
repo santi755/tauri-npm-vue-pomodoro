@@ -6,7 +6,8 @@
 
     <!-- <Greet /> -->
     <div class="w-full text-center mb-6">
-      <RangeSlider />
+      <span> {{ pomodoroTime }}:00 </span>
+      <RangeSlider v-model="pomodoroTime" />
     </div>
 
     <div class="w-full text-center mb-6">
@@ -19,8 +20,12 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
+
 import Button from "../../components/atoms/Button.vue";
 import Tag from "../../components/atoms/Tag.vue";
 import RangeSlider from "../../components/atoms/RangeSlider.vue";
 import Greet from "../../components/Greet.vue";
+
+const pomodoroTime = ref(1800);
 </script>
