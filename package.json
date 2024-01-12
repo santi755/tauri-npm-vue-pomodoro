@@ -7,13 +7,22 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "tauri": "tauri"
+    "tauri": "tauri",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@tauri-apps/api": "^1.5.2",
     "vue": "^3.3.4"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^7.6.8",
+    "@storybook/addon-interactions": "^7.6.8",
+    "@storybook/addon-links": "^7.6.8",
+    "@storybook/blocks": "^7.6.8",
+    "@storybook/test": "^7.6.8",
+    "@storybook/vue3": "^7.6.8",
+    "@storybook/vue3-vite": "^7.6.8",
     "@tauri-apps/cli": "^1.5.8",
     "@vitejs/plugin-vue": "^4.2.3",
     "autoprefixer": "^10.4.16",
@@ -21,6 +30,9 @@
     "postcss-cli": "^11.0.0",
     "postcss-import": "^16.0.0",
     "postcss-preset-env": "^9.3.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "storybook": "^7.6.8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.0.2",
     "vite": "^5.0.0",

@@ -3,7 +3,7 @@
     class="inline-block bg-green-800 rounded-full px-3 py-1 text-sm font-regular text-white"
   >
     <span
-      class="inline-block bg-red-500 rounded-full w-2 h-2 mr-1"
+      class="inline-block rounded-full w-2 h-2 mr-1"
       :class="tagTypeColor[props.tagType]"
     ></span>
     <span> {{ props.tag }}</span>
