@@ -1,23 +1,7 @@
 <script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import Greet from "./components/Greet.vue";
+import Home from "./pages/home/Home.vue";
 </script>
 
 <template>
-  <div class="h-screen w-screen bg-slate-600 flex items-center justify-center">
-    <h1 class="">Welcome to Tauri!!</h1>
-
-    <Greet />
-  </div>
+  <Home />
 </template>
-
-<style scoped>
-.logo.vite:hover {
-  filter: drop-shadow(0 0 2em #747bff);
-}
-
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #249b73);
-}
-</style>
