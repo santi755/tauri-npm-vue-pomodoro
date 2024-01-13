@@ -22,7 +22,7 @@ const props = defineProps({
   },
 });
 
-const tagTypeColor = {
+const tagTypeColor: Record<number, string> = {
   1: "bg-red-500",
   2: "bg-green-500",
   3: "bg-blue-500",

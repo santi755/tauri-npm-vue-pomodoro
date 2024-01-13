@@ -1,21 +1,21 @@
 <template>
-  <input
-    v-model="props.modelValue"
-    type="range"
-    class="transparent h-[4px] w-full cursor-pointer appearance-none border-transparent bg-yellow-200 dark:bg-neutral-800"
-    min="0"
-    max="3600"
-    step="60"
+  <slider
+    v-model="model"
+    color="#FB278D"
+    track-color="#333333"
+    orientation="circular"
+    :min="0"
+    :max="3600"
+    :step="300"
+    :height="15"
+    width="160px"
   />
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-  modelValue: {
-    type: Number,
-    required: true,
-  },
-});
+import slider from "vue3-slider";
+
+const model = defineModel();
 
 const emit = defineEmits(["update:modelValue"]);
 </script>

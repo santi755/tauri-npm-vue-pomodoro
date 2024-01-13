@@ -1,6 +1,6 @@
 import { ref } from "vue";
 
-export const usePomodoroTime = (pomodoroTimeInitialize: number) => {
+export const usePomodoro = (pomodoroTimeInitialize: number) => {
   const pomodoroTime = ref(pomodoroTimeInitialize);
 
   const startCountdown = () => {
@@ -12,8 +12,13 @@ export const usePomodoroTime = (pomodoroTimeInitialize: number) => {
     }, 1000);
   };
 
+  const resetCountdown = () => {
+    pomodoroTime.value = pomodoroTimeInitialize;
+  };
+
   return {
     pomodoroTime,
+    resetCountdown,
     startCountdown,
   };
 };
