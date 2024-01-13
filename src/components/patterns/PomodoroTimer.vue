@@ -1,5 +1,5 @@
 <template>
-    <span> {{ pomodoroFormatted }} - {{ pomodoroTimeInSeconds }} </span>
+    <span>{{ pomodoroFormatted }}</span>
     <RangeSlider v-model="pomodoroTimeInSeconds" />
 </template>
 
