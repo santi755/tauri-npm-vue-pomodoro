@@ -1,12 +1,12 @@
 export const useCountdownService = () => {
-  let timer: NodeJS.Timeout;
+  let countdownTimer: NodeJS.Timeout;
 
   const startCountdown = (countdownRestInSeconds: number, updateCallback: (value: number) => void) => {
-    timer = setInterval(() => {
+    countdownTimer = setInterval(() => {
       countdownRestInSeconds--;
       updateCallback(countdownRestInSeconds);
       if (countdownRestInSeconds === 0) {
-        clearInterval(timer);
+        clearInterval(countdownTimer);
       }
     }, 1000);
   };
@@ -19,7 +19,7 @@ export const useCountdownService = () => {
   };
 
   const stopCountdown = () => {
-    clearInterval(timer);
+    clearInterval(countdownTimer);
   }
 
   return {
