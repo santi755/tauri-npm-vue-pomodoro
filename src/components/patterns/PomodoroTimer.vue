@@ -1,15 +1,19 @@
 <template>
-    <span>{{ pomodoroFormatted }}</span>
-    <RangeSlider v-model="pomodoroTimeInSeconds" />
+    <div class="relative flex justify-center">
+        <AtomH2 class="absolute text-2xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            {{ pomodoroFormatted }}
+        </AtomH2>
+        <AtomRangeSlider v-model="pomodoroTimeInSeconds" />
+    </div>
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
 import { storeToRefs } from 'pinia';
 
 import { useTimeStore } from '../../store/time.ts';
 
-import RangeSlider from '../../components/atoms/RangeSlider.vue';
+import AtomRangeSlider from '../../components/atoms/AtomRangeSlider.vue';
+import AtomH2 from '../../components/atoms/AtomH2.vue';
 
 // Store
 const timeStore = useTimeStore();

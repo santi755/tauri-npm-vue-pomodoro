@@ -1,6 +1,6 @@
 <template>
-    <div class="h-screen w-screen bg-green-900 p-8">
-        <h1 class="w-full text-white text-center mb-10">Start your pomodoro session!</h1>
+    <div class="h-screen w-screen bg-zinc-900 p-8">
+        <AtomH1 class="text-2xl">Set up the Pomodoro time!</AtomH1>
 
         <!-- <Greet /> -->
         <div class="w-full text-center mb-6">
@@ -9,11 +9,11 @@
         </div>
 
         <div class="w-full text-center mb-6">
-            <Tag tag="Coding" :tagType="4" />
+            <AtomTag tag="Coding" :tagType="4" />
         </div>
         <div class="w-full text-center">
-            <Button v-if="isCountingDown" @click="stopPomodoro" text="Stop pomodoro!" />
-            <Button v-else @click="startPomodoro" text="Let's pomodoro!" />
+            <AtomButton v-if="isCountingDown" @click="stopPomodoro" text="Stop pomodoro!" />
+            <AtomButton v-else @click="startPomodoro" text="Let's pomodoro!" />
         </div>
     </div>
 </template>
@@ -23,8 +23,9 @@ import { storeToRefs } from 'pinia';
 
 import { useTimeStore } from '../../store/time.ts';
 
-import Button from '../../components/atoms/Button.vue';
-import Tag from '../../components/atoms/Tag.vue';
+import AtomButton from '../../components/atoms/AtomButton.vue';
+import AtomH1 from '../../components/atoms/AtomH1.vue';
+import AtomTag from '../../components/atoms/AtomTag.vue';
 import PomodoroTimer from '../../components/patterns/PomodoroTimer.vue';
 import CountdownTimer from '../../components/patterns/CountdownTimer.vue';
 // import Greet from "../../components/Greet.vue";
