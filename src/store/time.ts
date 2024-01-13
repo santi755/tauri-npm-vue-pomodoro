@@ -3,9 +3,11 @@ import { defineStore } from 'pinia';
 
 import { useCountdownService } from '../composables/useCountdownService';
 
+const STARTING_POMODORO_TIME_IN_SECONDS = 300;
+
 export const useTimeStore = defineStore('time', () => {
     // State
-    const pomodoroTimeInSeconds = ref(300);
+    const pomodoroTimeInSeconds = ref(STARTING_POMODORO_TIME_IN_SECONDS);
     const isCountingDown = ref(false);
 
     // Composable
@@ -29,7 +31,7 @@ export const useTimeStore = defineStore('time', () => {
     };
 
     const resetPomodoro = () => {
-        pomodoroTimeInSeconds.value = 300;
+        pomodoroTimeInSeconds.value = STARTING_POMODORO_TIME_IN_SECONDS;
     };
 
     return {
