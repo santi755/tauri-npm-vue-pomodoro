@@ -18,7 +18,7 @@ import slider from 'vue3-slider';
 
 import styles from 'tailwindcss/colors';
 
-const sliderColor = styles.pink[700];
+const sliderColor = styles.yellow[600];
 const sliderTrackColor = styles.gray[300];
 
 const model = defineModel();
