@@ -1,7 +1,8 @@
+export const COUNTDOWN_LIMIT_IN_SECONDS = 0;
+const SECONDS_IN_MINUTE = 60;
+const SECONDS_TO_FORMAT = 10;
+
 export const useCountdownService = () => {
-    const COUNTDOWN_LIMIT_IN_SECONDS = 0;
-    const SECONDS_IN_MINUTE = 60;
-    const SECONDS_TO_FORMAT = 10;
     let countdownTimer: NodeJS.Timeout;
 
     const startCountdown = (countdownRestInSeconds: number, updateCallback: (value: number) => void) => {
@@ -18,6 +19,7 @@ export const useCountdownService = () => {
         const minutes = Math.floor(countdownRestInSeconds / SECONDS_IN_MINUTE);
         const seconds = countdownRestInSeconds - minutes * SECONDS_IN_MINUTE;
         const formattedSeconds = seconds < SECONDS_TO_FORMAT ? `0${seconds}` : seconds;
+
         return `${minutes}:${formattedSeconds}`;
     };
 

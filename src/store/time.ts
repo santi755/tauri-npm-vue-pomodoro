@@ -1,7 +1,7 @@
 import { computed, ref } from 'vue';
 import { defineStore } from 'pinia';
 
-import { useCountdownService } from '../composables/useCountdownService';
+import { useCountdownService, COUNTDOWN_LIMIT_IN_SECONDS } from '../composables/useCountdownService';
 
 import lofiSong from '../assets/audio/background_lofi.mp3';
 
@@ -24,6 +24,10 @@ export const useTimeStore = defineStore('time', () => {
         isCountingDown.value = true;
         countdownService.startCountdown(pomodoroTimeInSeconds.value, (updatedValue) => {
             pomodoroTimeInSeconds.value = updatedValue;
+            console.log('updatedValue', updatedValue);
+            if (updatedValue === COUNTDOWN_LIMIT_IN_SECONDS) {
+                stopPomodoro();
+            }
         });
     };
 

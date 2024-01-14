@@ -7,7 +7,7 @@
         orientation="circular"
         :min="0"
         :max="3600"
-        :step="300"
+        :step="10"
         :height="10"
         width="160px"
     />
