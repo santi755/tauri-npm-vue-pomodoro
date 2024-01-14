@@ -1,6 +1,6 @@
 <template>
     <div class="h-screen w-screen bg-zinc-900 py-14">
-        <AtomH1 class="text-2xl mb-12">Pomodoro</AtomH1>
+        <AtomH1 class="mb-12">Pomodoro</AtomH1>
 
         <!-- <Greet /> -->
         <div class="w-full h-2/6 mb-6">

@@ -1,6 +1,6 @@
 <template>
     <div class="relative flex justify-center">
-        <AtomH2 class="absolute text-2xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <AtomH2 class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             {{ pomodoroFormatted }}
         </AtomH2>
         <AtomRangeSlider v-model="pomodoroTimeInSeconds" />
