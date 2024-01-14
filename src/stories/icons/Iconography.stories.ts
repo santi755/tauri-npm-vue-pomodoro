@@ -1,17 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 
-import AtomTag from '../../components/atoms/AtomTag.vue';
+import Iconography from '../../components/icons/Iconography.vue';
 
 const meta = {
-    title: 'Atoms/Tag',
-    component: AtomTag,
+    title: 'Icons/Iconography',
+    component: Iconography,
     tags: ['autodocs'],
     argTypes: {},
-    args: {
-        tag: 'Tag',
-        tagType: 2,
-    },
-} satisfies Meta<typeof AtomTag>;
+    args: {},
+} satisfies Meta<typeof Iconography>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

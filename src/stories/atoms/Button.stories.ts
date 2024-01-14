@@ -1,20 +1,22 @@
-import type { Meta, StoryObj } from "@storybook/vue3";
+import type { Meta, StoryObj } from '@storybook/vue3';
 
-import Button from "../../components/atoms/Button.vue";
+import AtomButton from '../../components/atoms/AtomButton.vue';
 
 const meta = {
-  title: "Atoms/Button",
-  component: Button,
-  tags: ["autodocs"],
-  argTypes: {},
-  args: {
-    text: "Button",
-  },
-} satisfies Meta<typeof Button>;
+    title: 'Atoms/Button',
+    component: AtomButton,
+    tags: ['autodocs'],
+    argTypes: {},
+    args: {},
+} satisfies Meta<typeof AtomButton>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {},
+    args: {},
+    render: () => ({
+        components: { AtomButton },
+        template: '<AtomButton class="bg-slate-500">Click!</AtomButton>',
+    }),
 };
