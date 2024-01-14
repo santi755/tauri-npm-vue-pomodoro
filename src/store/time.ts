@@ -3,12 +3,15 @@ import { defineStore } from 'pinia';
 
 import { useCountdownService } from '../composables/useCountdownService';
 
+import lofiSong from '../assets/audio/background_lofi.mp3';
+
 const STARTING_POMODORO_TIME_IN_SECONDS = 300;
 
 export const useTimeStore = defineStore('time', () => {
     // State
     const pomodoroTimeInSeconds = ref(STARTING_POMODORO_TIME_IN_SECONDS);
     const isCountingDown = ref(false);
+    const musicTrack = new Audio(lofiSong);
 
     // Composable
     const countdownService = useCountdownService();
@@ -34,6 +37,17 @@ export const useTimeStore = defineStore('time', () => {
         pomodoroTimeInSeconds.value = STARTING_POMODORO_TIME_IN_SECONDS;
     };
 
+    const playMusic = () => {
+        musicTrack.volume = 1.0;
+        musicTrack.play().catch((e) => {
+            console.warn('There was a problem playing sound', e);
+        });
+    };
+
+    const pauseMusic = () => {
+        musicTrack.pause();
+    };
+
     return {
         pomodoroTimeInSeconds,
         isCountingDown,
@@ -42,5 +56,7 @@ export const useTimeStore = defineStore('time', () => {
         startPomodoro,
         stopPomodoro,
         resetPomodoro,
+        playMusic,
+        pauseMusic,
     };
 });

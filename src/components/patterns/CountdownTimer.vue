@@ -7,10 +7,8 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { onMounted, onBeforeUnmount } from 'vue';
 import { storeToRefs } from 'pinia';
-
-import lofiSong from '../../assets/audio/background_lofi.mp3';
 
 import { useTimeStore } from '../../store/time.ts';
 
@@ -18,14 +16,13 @@ import AtomH2 from '../../components/atoms/AtomH2.vue';
 
 const timeStore = useTimeStore();
 const { pomodoroFormatted } = storeToRefs(timeStore);
+const { playMusic, pauseMusic } = timeStore;
 
 onMounted(() => {
-    setTimeout(() => {
-        const music = new Audio(lofiSong);
-        music.volume = 1.0;
-        music.play().catch((e) => {
-            console.warn('There was a problem playing sound', e);
-        });
-    }, 2000);
+    playMusic();
+});
+
+onBeforeUnmount(() => {
+    pauseMusic();
 });
 </script>
