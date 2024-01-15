@@ -2,14 +2,14 @@
     <slider
         id="vue3Slider"
         v-model="model"
-        :color="sliderColor"
-        :track-color="sliderTrackColor"
-        orientation="circular"
-        :min="0"
-        :max="3600"
-        :step="300"
-        :height="10"
-        width="160px"
+        :color="SLIDER_COLOR"
+        :track-color="SLIDER_TRACK_COLOR"
+        :orientation="SLIDER_ORIENTATION"
+        :min="SLIDER_MIN_VALUE"
+        :max="SLIDER_MAX_VALUE"
+        :step="SLIDER_STEP"
+        :height="SLIDER_HEIGHT"
+        :width="SLIDER_WIDTH"
     />
 </template>
 
@@ -18,8 +18,14 @@ import slider from 'vue3-slider';
 
 import styles from 'tailwindcss/colors';
 
-const sliderColor = styles.yellow[600];
-const sliderTrackColor = styles.gray[300];
+const SLIDER_ORIENTATION = 'circular';
+const SLIDER_MIN_VALUE = 0;
+const SLIDER_MAX_VALUE = 3600;
+const SLIDER_STEP = 10;
+const SLIDER_HEIGHT = 10;
+const SLIDER_WIDTH = '160px';
+const SLIDER_COLOR = styles.yellow[600];
+const SLIDER_TRACK_COLOR = styles.gray[300];
 
 const model = defineModel();
 
