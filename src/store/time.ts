@@ -20,11 +20,10 @@ export const useTimeStore = defineStore('time', () => {
     const pomodoroFormatted = computed(() => countdownService.formatToMinutesAndSeconds(pomodoroTimeInSeconds.value));
 
     // Actions
-    const startPomodoro = () => {
+    const startPomodoro = async () => {
         isCountingDown.value = true;
         countdownService.startCountdown(pomodoroTimeInSeconds.value, (updatedValue) => {
             pomodoroTimeInSeconds.value = updatedValue;
-            console.log('updatedValue', updatedValue);
             if (updatedValue === COUNTDOWN_LIMIT_IN_SECONDS) {
                 stopPomodoro();
             }

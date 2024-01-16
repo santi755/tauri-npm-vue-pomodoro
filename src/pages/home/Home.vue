@@ -25,6 +25,7 @@
 
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
+import { invoke } from '@tauri-apps/api/tauri';
 
 import { useTimeStore } from '../../store/time.ts';
 
@@ -40,5 +41,11 @@ import IconPause from '../../components/icons/IconPause.vue';
 
 const timeStore = useTimeStore();
 const { isCountingDown } = storeToRefs(timeStore);
-const { startPomodoro, stopPomodoro } = timeStore;
+const { startPomodoro: startPomodoroFromStore, stopPomodoro } = timeStore;
+
+const startPomodoro = async () => {
+    startPomodoroFromStore();
+
+    const savingPomodoroStart = await invoke('save_pomodoro_session_start', { time: 123 });
+};
 </script>
