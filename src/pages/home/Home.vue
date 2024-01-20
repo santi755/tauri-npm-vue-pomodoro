@@ -25,7 +25,6 @@
 
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { invoke } from '@tauri-apps/api/tauri';
 
 import { useTimeStore } from '../../store/time.ts';
 
@@ -45,8 +44,5 @@ const { startPomodoro: startPomodoroFromStore, stopPomodoro } = timeStore;
 
 const startPomodoro = async () => {
     startPomodoroFromStore();
-
-    const savingPomodoroStart = await invoke('save_pomodoro_session_start', { time: 123 });
-    console.log(savingPomodoroStart);
 };
 </script>
