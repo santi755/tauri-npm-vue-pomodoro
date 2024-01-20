@@ -13,7 +13,7 @@ export interface PomodoroSession {
 
 export const usePomodoroSessionStore = defineStore('session', () => {
     // State
-    const pomodoroSession = ref<PomodoroSession>();
+    const pomodoroSession = ref<PomodoroSession | null>(null);
 
     // Composable
     const uuidService = useUuidService();
@@ -30,7 +30,7 @@ export const usePomodoroSessionStore = defineStore('session', () => {
     };
 
     const remove = () => {
-        pomodoroSession.value = undefined;
+        pomodoroSession.value = null;
     };
 
     return {

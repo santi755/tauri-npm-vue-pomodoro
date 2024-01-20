@@ -1,7 +1,7 @@
 import { computed, ref } from 'vue';
 import { defineStore } from 'pinia';
 
-import { usePomodoroSessionStore, PomodoroSession } from './pomodoroSession';
+import { usePomodoroSessionStore } from './pomodoroSession';
 import { useCountdownService, COUNTDOWN_LIMIT_IN_SECONDS } from '../composables/useCountdownService';
 import timeApiService from '../services/timeApiService';
 
@@ -16,19 +16,20 @@ export const useTimeStore = defineStore('time', () => {
     const musicTrack = new Audio(LOFI_SONG);
 
     // Store
-    const pomodoroSession = usePomodoroSessionStore();
+    const pomodoroSessionStore = usePomodoroSessionStore();
 
     // Composable
     const countdownService = useCountdownService();
 
     // Getters
     const pomodoroFormatted = computed(() => countdownService.formatToMinutesAndSeconds(pomodoroTimeInSeconds.value));
+    const session = computed(() => pomodoroSessionStore.pomodoroSession);
 
     // Actions
     const startPomodoro = async () => {
         isCountingDown.value = true;
 
-        savePomodoroSession();
+        savePomodoroSessionStart();
         countdownService.startCountdown(pomodoroTimeInSeconds.value, (updatedValue) => {
             pomodoroTimeInSeconds.value = updatedValue;
             if (updatedValue === COUNTDOWN_LIMIT_IN_SECONDS) {
@@ -38,9 +39,14 @@ export const useTimeStore = defineStore('time', () => {
     };
 
     const stopPomodoro = () => {
-        countdownService.stopCountdown();
-        resetPomodoro();
-        isCountingDown.value = false;
+        try {
+            savePomodoroSessionEnd();
+            countdownService.stopCountdown();
+            resetPomodoro();
+            isCountingDown.value = false;
+        } catch (e) {
+            console.warn('There was a problem stopping pomodoro', e);
+        }
     };
 
     const resetPomodoro = () => {
@@ -58,12 +64,29 @@ export const useTimeStore = defineStore('time', () => {
         musicTrack.pause();
     };
 
-    const savePomodoroSession = async () => {
+    const savePomodoroSessionStart = async () => {
         try {
-            const session: PomodoroSession = pomodoroSession.create(pomodoroTimeInSeconds.value, 'coding');
-
-            const started = await timeApiService.savePomodoroSession(session);
+            const session = pomodoroSessionStore.create(pomodoroTimeInSeconds.value, 'coding');
+            const started = await timeApiService.savePomodoroSessionStart(session);
             console.log('Pomodoro session started => ', started);
+        } catch (e) {
+            console.warn('There was a problem saving pomodoro session', e);
+        }
+    };
+
+    const savePomodoroSessionEnd = async () => {
+        try {
+            if (!session.value) {
+                throw new Error('Pomodoro session is not defined');
+            }
+
+            const ended = await timeApiService.savePomodoroSessionEnd({
+                sessionUuid: session.value.sessionUuid,
+                sessionTime: pomodoroTimeInSeconds.value,
+                sessionType: session.value.sessionType,
+            });
+            console.log('Pomodoro session ended => ', ended);
+            pomodoroSessionStore.remove();
         } catch (e) {
             console.warn('There was a problem saving pomodoro session', e);
         }
