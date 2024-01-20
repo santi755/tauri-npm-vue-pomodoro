@@ -1,8 +1,9 @@
 import { computed, ref } from 'vue';
 import { defineStore } from 'pinia';
 
+import { usePomodoroSessionStore, PomodoroSession } from './pomodoroSession';
 import { useCountdownService, COUNTDOWN_LIMIT_IN_SECONDS } from '../composables/useCountdownService';
-import timeApiService, { PomodoroSession } from '../services/timeApiService';
+import timeApiService from '../services/timeApiService';
 
 import LOFI_SONG from '../assets/audio/background_lofi.mp3';
 
@@ -10,9 +11,12 @@ const STARTING_POMODORO_TIME_IN_SECONDS = 300;
 
 export const useTimeStore = defineStore('time', () => {
     // State
-    const pomodoroTimeInSeconds = ref(STARTING_POMODORO_TIME_IN_SECONDS);
     const isCountingDown = ref(false);
+    const pomodoroTimeInSeconds = ref(STARTING_POMODORO_TIME_IN_SECONDS);
     const musicTrack = new Audio(LOFI_SONG);
+
+    // Store
+    const pomodoroSession = usePomodoroSessionStore();
 
     // Composable
     const countdownService = useCountdownService();
@@ -56,11 +60,9 @@ export const useTimeStore = defineStore('time', () => {
 
     const savePomodoroSession = async () => {
         try {
-            const pomodoroSession: PomodoroSession = {
-                sessionTime: pomodoroTimeInSeconds.value,
-                sessionType: 'coding',
-            };
-            const started = await timeApiService.savePomodoroSession(pomodoroSession);
+            const session: PomodoroSession = pomodoroSession.create(pomodoroTimeInSeconds.value, 'coding');
+
+            const started = await timeApiService.savePomodoroSession(session);
             console.log('Pomodoro session started => ', started);
         } catch (e) {
             console.warn('There was a problem saving pomodoro session', e);

@@ -1,14 +1,12 @@
 import { invoke } from '@tauri-apps/api/tauri';
 
-export interface PomodoroSession {
-    sessionTime: number;
-    sessionType: 'coding' | 'work out' | 'break';
-}
+import { PomodoroSession } from '../store/pomodoroSession';
 
 class timeApiService {
     async savePomodoroSession(pomodoroSession: PomodoroSession) {
         try {
             const savingPomodoroStart = await invoke('save_pomodoro_session_start', {
+                sessionUuid: pomodoroSession.sessionUuid,
                 sessionTime: pomodoroSession.sessionTime,
                 sessionType: pomodoroSession.sessionType,
             });
