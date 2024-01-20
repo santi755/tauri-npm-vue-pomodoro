@@ -47,5 +47,6 @@ const startPomodoro = async () => {
     startPomodoroFromStore();
 
     const savingPomodoroStart = await invoke('save_pomodoro_session_start', { time: 123 });
+    console.log(savingPomodoroStart);
 };
 </script>

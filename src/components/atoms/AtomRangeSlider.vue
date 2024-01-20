@@ -21,7 +21,7 @@ import styles from 'tailwindcss/colors';
 const SLIDER_ORIENTATION = 'circular';
 const SLIDER_MIN_VALUE = 0;
 const SLIDER_MAX_VALUE = 3600;
-const SLIDER_STEP = 10;
+const SLIDER_STEP = 300;
 const SLIDER_HEIGHT = 10;
 const SLIDER_WIDTH = '160px';
 const SLIDER_COLOR = styles.yellow[600];
