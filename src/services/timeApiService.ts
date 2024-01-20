@@ -6,9 +6,11 @@ class timeApiService {
     async savePomodoroSession(pomodoroSession: PomodoroSession) {
         try {
             const savingPomodoroStart = await invoke('save_pomodoro_session_start', {
-                sessionUuid: pomodoroSession.sessionUuid,
-                sessionTime: pomodoroSession.sessionTime,
-                sessionType: pomodoroSession.sessionType,
+                pomodoroSession: {
+                    session_uuid: pomodoroSession.sessionUuid,
+                    session_time: pomodoroSession.sessionTime,
+                    session_type: pomodoroSession.sessionType,
+                },
             });
 
             return savingPomodoroStart;

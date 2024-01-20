@@ -1,17 +1,23 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
-#[tauri::command]
-fn save_pomodoro_session_start(
+use serde::{Deserialize, Serialize};
+
+#[derive(Serialize, Deserialize)]
+struct PomodoroSession {
     session_uuid: String,
     session_time: u32,
     session_type: String,
-) -> String {
+}
+
+#[tauri::command]
+fn save_pomodoro_session_start(pomodoro_session: PomodoroSession) -> String {
     format!(
         "Started session {}: duration {} and type: {}",
-        session_uuid, session_time, session_type
+        pomodoro_session.session_uuid, pomodoro_session.session_time, pomodoro_session.session_type
     )
 }
+
 /*
 #[tauri::command]
 fn save_pomodoro_session_end(session_uuid: String, session_time: u32) -> String {
