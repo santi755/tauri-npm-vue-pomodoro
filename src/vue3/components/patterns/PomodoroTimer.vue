@@ -10,7 +10,7 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 
-import { useTimeStore } from '../../store/time.ts';
+import { useTimeStore } from '../../store/time';
 
 import AtomRangeSlider from '../../components/atoms/AtomRangeSlider.vue';
 import AtomH2 from '../../components/atoms/AtomH2.vue';

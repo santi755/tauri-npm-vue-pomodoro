@@ -10,6 +10,7 @@ class timeApiService {
                     session_uuid: pomodoroSession.sessionUuid,
                     session_time: pomodoroSession.sessionTime,
                     session_type: pomodoroSession.sessionType,
+                    session_completed: pomodoroSession.sessionCompleted,
                 },
             });
 
@@ -26,6 +27,7 @@ class timeApiService {
                     session_uuid: pomodoroSession.sessionUuid,
                     session_time: pomodoroSession.sessionTime,
                     session_type: pomodoroSession.sessionType,
+                    session_completed: pomodoroSession.sessionCompleted,
                 },
             });
 

@@ -26,7 +26,7 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 
-import { useTimeStore } from '../../store/time.ts';
+import { useTimeStore } from '../../store/time';
 
 import AtomButton from '../../components/atoms/AtomButton.vue';
 import AtomH1 from '../../components/atoms/AtomH1.vue';

@@ -9,7 +9,11 @@ export interface PomodoroSession {
     sessionUuid: string;
     sessionTime: number;
     sessionType: PomodoroSessionType;
+    sessionRemainingTime: number;
+    sessionCompleted: boolean;
 }
+
+const STARTING_POMODORO_COMPLETE = false;
 
 export const usePomodoroSessionStore = defineStore('session', () => {
     // State
@@ -19,11 +23,13 @@ export const usePomodoroSessionStore = defineStore('session', () => {
     const uuidService = useUuidService();
 
     // Actions
-    const create = (time: number, type: PomodoroSessionType): PomodoroSession => {
+    const create = (time: number, remainingTime: number, type: PomodoroSessionType): PomodoroSession => {
         pomodoroSession.value = {
             sessionUuid: uuidService.generateUuid(),
             sessionTime: time,
+            sessionRemainingTime: remainingTime,
             sessionType: type,
+            sessionCompleted: STARTING_POMODORO_COMPLETE,
         };
 
         return pomodoroSession.value;

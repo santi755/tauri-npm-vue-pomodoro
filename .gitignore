@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Persistence files
+src-tauri/pomodoro_sessions.json

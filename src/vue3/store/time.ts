@@ -66,7 +66,11 @@ export const useTimeStore = defineStore('time', () => {
 
     const savePomodoroSessionStart = async () => {
         try {
-            const session = pomodoroSessionStore.create(pomodoroTimeInSeconds.value, 'coding');
+            const session = pomodoroSessionStore.create(
+                pomodoroTimeInSeconds.value,
+                pomodoroTimeInSeconds.value,
+                'coding',
+            );
             const started = await timeApiService.savePomodoroSessionStart(session);
             console.log('Pomodoro session started => ', started);
         } catch (e) {
@@ -80,10 +84,13 @@ export const useTimeStore = defineStore('time', () => {
                 throw new Error('Pomodoro session is not defined');
             }
 
+            const sessionCompleted = pomodoroTimeInSeconds.value === COUNTDOWN_LIMIT_IN_SECONDS;
             const ended = await timeApiService.savePomodoroSessionEnd({
                 sessionUuid: session.value.sessionUuid,
                 sessionTime: pomodoroTimeInSeconds.value,
+                sessionRemainingTime: pomodoroTimeInSeconds.value,
                 sessionType: session.value.sessionType,
+                sessionCompleted,
             });
             console.log('Pomodoro session ended => ', ended);
             pomodoroSessionStore.remove();

@@ -10,7 +10,7 @@
 import { onMounted, onBeforeUnmount } from 'vue';
 import { storeToRefs } from 'pinia';
 
-import { useTimeStore } from '../../store/time.ts';
+import { useTimeStore } from '../../store/time';
 
 import AtomH2 from '../../components/atoms/AtomH2.vue';
 
